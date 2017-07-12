@@ -41,7 +41,13 @@ cd bbdweb
 git branch development
 git checkout development
 ```
- 
+
+Live demo 
+-----
+https://bbdweb.herokuapp.com/
+
+Code from master branch will be automatically deployed to heroku platform reflecting most recent changes.
+
 Acknowledgments 
 ---------------
 TBA
