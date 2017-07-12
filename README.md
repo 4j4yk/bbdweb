@@ -40,8 +40,6 @@ git clone https://github.com/akhampariya/bbdweb.git
 cd bbdweb
 git branch development
 git checkout development
-
-exit
 ```
  
 Acknowledgments 
