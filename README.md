@@ -38,12 +38,14 @@ Setup
 ```bash
 git clone https://github.com/akhampariya/bbdweb.git
 cd bbdweb
+npm install
 git branch development
 git checkout development
 
 exit
 ```
- 
+Check and update dependecies to latest as required. All commands are available here - https://docs.npmjs.com/cli/update
+
 Acknowledgments 
 ---------------
 TBA
