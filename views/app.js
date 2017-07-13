@@ -10,12 +10,17 @@ var routes = require('./routes/index');
 
 var app = express();
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost/test', {
+var dbpath = 'mongodb://localhost/nbi'
+mongoose.connect(dbpath, {
   useMongoClient: true,
   /* other options */
 });
 
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
