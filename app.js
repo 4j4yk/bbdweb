@@ -10,9 +10,12 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 
 var app = express();
+// use this if putting on heroku kind of platform and configure mongo_atlas_uri with mongo path
+var url = process.env.mongo_atlas_uri; 
 
-var dbpath = 'mongodb://localhost/nbi'
-mongoose.connect(dbpath, {
+// for local connections using default port, add port if you have changed initially
+// var url = "mongodb://localhost:/nbi";
+mongoose.connect(url, {
   useMongoClient: true,
   /* other options */
 });
