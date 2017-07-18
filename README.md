@@ -49,6 +49,14 @@ docker-compose up
 open http://localhost:80
 exit
 ```
+
+Change log 
+---------------
+
+* Easy installation with Docker ([#3][i3])
+
+[i3]: https://github.com/akhampariya/bbdweb/issues/3
+
 Acknowledgments 
 ---------------
 TBA
