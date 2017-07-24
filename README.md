@@ -56,6 +56,10 @@ Change log
 * Easy installation with Docker ([#3][i3])
 
 [i3]: https://github.com/akhampariya/bbdweb/issues/3
+=======
+git branch development
+git checkout development
+```
 
 Acknowledgments 
 ---------------
