@@ -14,7 +14,7 @@ router.get('/home', function(req, res, next) {
 // Bridges page
 router.get('/Bridges', function(req, res, next) {
     Bridge.find(function(err, bridges) {
-        console.log(bridges);
+        // console.log(bridges);
         res.render('data/lookup', { title: 'NBI Bridge Data', bridges: bridges });
     });
 });
@@ -22,7 +22,7 @@ router.get('/Bridges', function(req, res, next) {
 router.get('/findone/:id', function(req, res, next) {
     console.log('getting Bridge');
     Bridge.findOne({
-            isbn: req.params.id
+            structureNumber: req.params.id
         })
         .exec(function(err, bridges) {
             if (err) {

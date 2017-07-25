@@ -14,8 +14,9 @@ var app = express();
 // var url = process.env.mongo_atlas_uri; 
 
 // for local connections using default port, add port if you have changed initially
-var url = "mongodb://localhost/nbi";
-// var url = process.env.MONGODB_URI;
+
+var url = process.env.MONGODB_URI;
+mongoose.Promise = global.Promise;
 mongoose.connect(url, {
     useMongoClient: true,
     /* other options */
