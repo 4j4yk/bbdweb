@@ -1,0 +1,17 @@
+<div class="div">
+      <h3 align='center'>{{title}} <i style="font-size:14px" class="fa">&#xf018;</i> </h3>
+{{#each bridges}}
+<div class="div">
+      <ul class="list-group">
+        <li class="list-group-item"> Structure No: {{ this.structureNumber }} </li>
+        <li class="list-group-item"> State Code: {{this.stateCode }}</li>
+        <li class="list-group-item"> County Code: {{this.countyCode }}</li>
+        <li class="list-group-item"> Location: {{this.location }}</li>
+        <li class="list-group-item"> Latitude: {{this.latitude }}</li>   
+        <li class="list-group-item"> Longitude: {{this.longitude }}</li>        
+      </ul>
+      {{else}}
+      <ul>Nothing found </ul>
+</div> 
+{{/each }}
+</div>

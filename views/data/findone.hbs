@@ -1,9 +1,11 @@
 <div class="div">
-{{!--{{ bridges }}--}}
+{{#each bridges}}
 <div class="div">
       <ul class="list-group">
-        <li class="list-group-item">Structure No: {{ bridges.structureNumber }} </li>
+         <a href="/bridges/{{_id}}"> <li class="list-group-item"> <i style="font-size:14px" class="fa">&#xf018;</i> Structure No: {{ structureNumber }} </li></a>
       </ul>
+      {{else}}
+      <p class="empty">No content</p>
 </div> 
-{{!--{{/each }}--}}
+{{/each }}
 </div>

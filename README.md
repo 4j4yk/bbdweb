@@ -49,6 +49,7 @@ docker-compose up
 open http://localhost:80
 exit
 ```
+Note: You need to provide mongodb path in environment variable MONGODB_URI under `docker-compose.yml`.
 
 Change log 
 ---------------

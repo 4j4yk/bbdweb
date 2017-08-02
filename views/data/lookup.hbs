@@ -2,8 +2,10 @@
 {{#each bridges}}
 <div class="div">
       <ul class="list-group">
-        <li class="list-group-item">Structure No: {{ structureNumber }} </li>
+         <i style="font-size:14px" class="fa">&#xf018;</i><li class="list-group-item"> Structure No: {{ this.structureNumber }} </li>   
       </ul>
+      {{else}}
+      <ul>Empty database.</ul>
 </div> 
 {{/each }}
 </div>
