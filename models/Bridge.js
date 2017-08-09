@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// var BridgesSchema = new Schema({ any: Schema.Types.Mixed });
+// // var BridgesSchema = new Schema({ any: Schema.Types.Mixed });
 // var BridgesSchema = new Schema({
-//    title : String,
-//    isbn : String,
-//    });
+//     title: String,
+//     isbn: String,
+// });
 
 var BridgesSchema = new Schema({
     year: Number,
