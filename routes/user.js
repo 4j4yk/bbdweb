@@ -21,25 +21,39 @@ router.use('/', notLoggedIn, function(req, res, next) {
 
 router.get('/signup', function(req, res, next) {
     var messages = req.flash('error');
-    res.render('user/register', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
+    res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: '/user/account',
-    failureRedirect: '/user/register',
+    failureRedirect: '/user/signup',
     failureFlash: true
-}));
+}), function(req, res, next) {
+    if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        res.redirect('/user/profile');
+    }
+});
 
 router.get('/signin', function(req, res, next) {
     var messages = req.flash('error');
-    res.render('user/login', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
+    res.render('user/signin', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
 });
 
 router.post('/signin', passport.authenticate('local.signin', {
-    successRedirect: '/user/account',
-    failureRedirect: '/user/login',
+    failureRedirect: '/user/signin',
     failureFlash: true
-}));
+}), function(req, res, next) {
+    if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        res.redirect('/user/profile');
+    }
+});
 
 module.exports = router;
 

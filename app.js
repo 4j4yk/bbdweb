@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
+var mongoosePaginater = require('mongoose-paginater');
 var session = require('express-session');
 var passport = require('passport');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
+
 
 var userRoutes = require('./routes/user');
 var routes = require('./routes/index');

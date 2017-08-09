@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Bridge = require('../models/Bridge');
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('landing');
@@ -12,23 +11,28 @@ router.get('/', function(req, res, next) {
 router.get('/home', function(req, res, next) {
     res.render('data/index', { title: 'NBI Bridge Data' });
 });
-
-// Bridges page
+//All Bridges
 router.get('/Bridges', function(req, res, next) {
-    Bridge.find(function(err, bridges) {
-        console.log(bridges);
-        res.render('data/lookup', { title: 'NBI Bridge Data', bridges: bridges });
+    Bridge.count(function(err, count) {
+        var options = {
+            perPage: 4,
+            delta: 3,
+            page: req.query.page,
+            classNameSpace: '',
+            query: { q1: 'v1', q2: 'v2' }
+        };
+        var query = Bridge.find().sort({ 'id': 1 });
+
+        query.paginater(options, function(err, result) {
+            res.render('data/lookup', {
+                title: 'All Bridges',
+                pager: result
+            });
+        });
     });
 });
 
-// router.get('/Bridges/:id', function(req, res, next) {
-//     Bridge.findOne({ _id: req.params.id }, function(err, bridges) {
-//         // console.log(bridges);
-//         res.render('data/lookup', { title: 'NBI Bridge Data', bridges: bridges });
-//     });
-// });
-
-router.get("/Bridges/:id", function(req, res) {
+router.get("/Bridges/:id", isLoggedIn, function(req, res) {
     var terms = req.body.terms;
     Bridge.find({ _id: req.params.id }, function(err, bridges) {
         res.render("data/allinfo", { title: 'Details of bridge', bridges: bridges });
@@ -37,7 +41,7 @@ router.get("/Bridges/:id", function(req, res) {
 });
 
 // Search route
-router.get('/findone/:id', function(req, res, next) {
+router.get('/findone/:id', isLoggedIn, function(req, res, next) {
     console.log('getting Bridge');
     var srch = req.params.id;
     Bridge.find({
@@ -53,7 +57,7 @@ router.get('/findone/:id', function(req, res, next) {
             }
         });
 });
-router.post('/findone/submit', function(err, req, res, next) {
+router.post('/findone/submit', isLoggedIn, function(err, req, res, next) {
     if (err) {
         res.send('error occurred')
     } else {
@@ -81,44 +85,11 @@ router.get('/pilot', function(req, res, next) {
     res.render('data/pilot', { title: 'NBI Bridge Data' });
 
 });
-// router.get('/lookup', function(req, res, next) {
-//   Bridge.find(function(err, BridgeRecs){
-//   res.render('data/lookup', { title: 'NBI Bridge Data', BridgeRecs: BridgeRecs});
-//   });
-
-// });
-// router.get('/lookup', function(req, res, next) {
-//   Bridge.find(function(err, bridges){
-//     console.log(bridges);
-//     res.render('data/lookup', { title: bridges, bridges: bridges});
-//   });
-
-// });
-// router.get('/bridge', function(req, res) {
-//   console.log('getting all books');
-//   Bridge.find({})
-//     .exec(function(err, bridges) {
-//       if(err) {
-//         res.send('error occured')
-//       } else {
-//         console.log(bridges);
-//         res.json(bridges);
-//       }
-//     });
-// });
-
-
-// app.get('/bridge', function(req, res) {
-//   console.log('getting all books');
-//   Bridge.find({})
-//     .exec(function(err, bridges) {
-//       if(err) {
-//         res.send('error occured')
-//       } else {
-//         console.log(bridges);
-//         res.json(bridges);
-//       }
-//     });
-// });
-
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}

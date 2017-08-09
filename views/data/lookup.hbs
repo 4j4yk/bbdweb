@@ -1,11 +1,19 @@
+
+<div class="text-center">
+<h1 class="text-center">{{title}}</h1>
 <div class="div">
-{{#each bridges}}
+ {{#each pager.results}}
 <div class="div">
       <ul class="list-group">
-         <i style="font-size:14px" class="fa">&#xf018;</i><li class="list-group-item"> Structure No: {{ this.structureNumber }} </li>   
+         <a href="/bridges/{{_id}}"> <li class="list-group-item"> <i style="font-size:14px" class="fa">&#xf018;</i> Structure No: {{ structureNumber }} </li></a>
       </ul>
       {{else}}
-      <ul>Empty database.</ul>
+      <p class="empty"><a href="/bridges/">No content, Click here to display all srtuctures.</a></p>
 </div> 
 {{/each }}
+</div>
+<div class="text-center">
+            <div class="pagination">
+                  {{{pager.render}}}
+            </div>
 </div>
