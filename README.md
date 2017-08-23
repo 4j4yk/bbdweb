@@ -46,9 +46,9 @@ git clone https://github.com/akhampariya/bbdweb.git
 cd bbdweb
 docker build -t bbdweb/bridging-big-data:1.0 .
 docker-compose up
-open http://localhost:80
-exit
 ```
+Browse to http://localhost
+
 Note: You need to provide mongodb path in environment variable MONGODB_URI under `docker-compose.yml`.
 
 Change log 
