@@ -41,9 +41,9 @@ router.get("/Bridges/:id", isLoggedIn, function(req, res) {
 });
 
 // Search route
-router.get('/findone/:id', isLoggedIn, function(req, res, next) {
+router.get('/findone/:id', function(req, res, next) {
     console.log('getting Bridge');
-    var srch = req.params.id;
+    var srch = req.query.id;
     Bridge.find({
             structureNumber: new RegExp(srch, 'i')
         })
@@ -57,15 +57,15 @@ router.get('/findone/:id', isLoggedIn, function(req, res, next) {
             }
         });
 });
-router.post('/findone/submit', isLoggedIn, function(err, req, res, next) {
-    if (err) {
-        res.send('error occurred')
-    } else {
-        // console.log(bridges);
-        //  res.json(bridges);
-        res.redsendirect('/findone/' + req.body.id);
-    }
-});
+// router.post('/findone/submit', isLoggedIn, function(err, req, res, next) {
+//     if (err) {
+//         res.send('error occurred')
+//     } else {
+//         // console.log(bridges);
+//         //  res.json(bridges);
+//         res.redsendirect('/findone/' + req.body.id);
+//     }
+// });
 
 
 //People
